@@ -1,15 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config();
 const auth = require('./middleware/auth');
-const user = require('./models/user');
-const dotenv = require('dotenv');
 
-dotenv.config();
+const userRoutes = require('./routes/user');
 
 mongoose
-  .connect(process.env.API_URL)
+  .connect(process.env.MONGODB_CONNECTION)
   .then(() => {
     console.log('Successfully connected to MongoDB Atlas!');
   })
@@ -35,6 +32,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// app.use('/api/auth', userRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;

@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-  endpoint: process.env.API_URL,
-  masterKey: process.env.API_KEY,
+  endpoint: process.env.MONGODB_CONNECTION,
   port: process.env.PORT,
 };
