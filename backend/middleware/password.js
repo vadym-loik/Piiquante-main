@@ -6,12 +6,12 @@ module.exports = (req, res, next) => {
   if (!passwordSchema.validate(req.body.password)) {
     res.writeHead(
       400,
-      'Le mot de passe doit comprendre 8 caractères dont un chiffre, sans espaces',
+      'The password must be 8 characters including a number, without spaces!',
       {
         'content-type': 'application/json',
       }
     );
-    res.end('Le format du mot de passe est incorrect.');
+    res.end('The password format is incorrect!');
   } else {
     next();
   }
