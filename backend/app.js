@@ -1,12 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv').config();
-const auth = require('./middleware/auth');
+const dotenv = require('dotenv');
+// const auth = require('./middleware/auth');
 
 const userRoutes = require('./routes/user');
 
+dotenv.config();
+
 mongoose
-  .connect(process.env.MONGODB_CONNECTION)
+  .connect(process.env.MONGODB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log('Successfully connected to MongoDB Atlas!');
   })
