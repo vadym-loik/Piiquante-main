@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
-dotenv.config();
+// dotenv.config();
 
-module.exports = {
-  endpoint: process.env.MONGODB_CONNECTION,
-  port: process.env.PORT,
-};
+// module.exports = {
+//   endpoint: process.env.MONGODB_CONNECTION,
+//   port: process.env.PORT,
+// };
