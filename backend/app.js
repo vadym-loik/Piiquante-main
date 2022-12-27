@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
-// const auth = require('./middleware/auth');
 
 const userRoutes = require('./routes/user');
 
 dotenv.config();
+
+const app = express();
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION)
@@ -17,8 +18,6 @@ mongoose
     console.log('Unable to connect to MongoDB Atlas!');
     console.error(error);
   });
-
-const app = express();
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,6 +35,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use('/api/auth', userRoutes);
+
 app.use('./images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
