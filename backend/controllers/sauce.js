@@ -48,7 +48,7 @@ exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
       const filename = sauce.imageUrl.split('/images/')[1];
-      fs.unlike(`images/${filename}`, () => {
+      fs.unlink(`images/${filename}`, () => {
         Sauce.deleteOne({ _id: req.params.id })
           .then(() => res.status(200).json({ message: 'Object deleted.' }))
           .catch((error) => res.status(400).json({ error }));
