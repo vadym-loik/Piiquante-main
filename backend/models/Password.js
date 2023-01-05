@@ -1,6 +1,7 @@
 const validPassword = require('password-validator');
 const pwSchema = new validPassword();
 
+// password model
 pwSchema
   .is()
   .min(8)
