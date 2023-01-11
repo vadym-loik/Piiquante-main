@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
-// const cookie = require('cookie');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/user');
@@ -19,28 +18,15 @@ mongoose
   .then(() => console.log('Successfully connected to MongoDB Atlas!'))
   .catch(() => console.log('Connection to MongoDB failed!'));
 
+// helmet to protect headers
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
+
 // setting the headers
 app.use((req, res, next) => {
-  // Parse the query string
-  // const url = require('url');
-  // const query = url.parse(req.url, true, true).query;
-
-  // if (query && query.name) {
-  // Set a new cookie with the name
-  // res.setHeader(
-  //   'Set-Cookie',
-  //   cookie.serialize('name', String(query.name), {
-  //     httpOnly: true,
-  //     maxAge: 60 * 60 * 24 * 7, // 1 week
-  //   })
-  // );
-
-  // Redirect back after setting cookie
-  //   res.statusCode = 302;
-  //   res.setHeader('Location', req.headers.referer || '/');
-  //   res.end();
-  //   return;
-  // }
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
     'Access-Control-Allow-Headers',
@@ -55,13 +41,6 @@ app.use((req, res, next) => {
 
 // for parsing json objects
 app.use(express.json());
-
-// helmet to protect headers
-app.use(
-  helmet({
-    crossOriginResourcePolicy: false,
-  })
-);
 
 // to avoid code injection in MongoDB
 app.use(mongoSanitize());
