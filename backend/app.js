@@ -1,10 +1,20 @@
+// Express is a small framework that sits on top of Node.js’s web server functionality to simplify its APIs and add helpful new features.It makes it easier to organize your application’s functionality with middle ware and routing; it adds helpful utilities to Node.js’s HTTP objects;it facilitates the rendering of dynamic HTTP objects.
 const express = require('express');
 const app = express();
+
+// Mongoose is an Object Document Mapper (ODM). This means that Mongoose allows you to define objects with a strongly-typed schema that is mapped to a MongoDB document.
 const mongoose = require('mongoose');
+
+// .env file. In the application, there are confidential information that you do not want to show to a third party, such as "DB information", "server information", "external API cooperation information". Sensitive information stores the information as environment variables separately from the code.
 const dotenv = require('dotenv');
 const path = require('path');
+
+// Helmet.js is a Node.js module that helps in securing HTTP headers. It is implemented in express applications. Therefore, we can say that helmet.js helps in securing express applications. It sets up various HTTP headers to prevent attacks like Cross-Site-Scripting(XSS), clickjacking, etc.
 const helmet = require('helmet');
+
+// The sanitize function will strip out any keys that start with '$' in the input, so you can pass it to MongoDB without worrying about malicious users overwriting query selectors.
 const mongoSanitize = require('express-mongo-sanitize');
+
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 

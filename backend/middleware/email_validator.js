@@ -1,3 +1,4 @@
+// A simple module to validate an e-mail address
 const validEmail = require('email-validator');
 
 module.exports = (req, res, next) => {
